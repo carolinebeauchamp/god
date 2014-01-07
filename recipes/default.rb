@@ -48,6 +48,8 @@ elsif node['god']['init_style'] == 'init'
   end
 
   service "god" do
-    action :start
+    supports [ :restart, :status ]
+    action [:enable, :start ]
+    priority node['god']['priority']
   end
 end
